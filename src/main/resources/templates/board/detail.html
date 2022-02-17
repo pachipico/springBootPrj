@@ -4,6 +4,7 @@
     <th:block th:fragment="content">
       <h2>Board Detail [[${bdto.bno}]]</h2>
       <form action="/board/modify" method="post" id="modForm">
+        <input type="hidden" name="bno" th:value="${bdto.bno}" />
         <div class="my-3">
           <label for="created">Created At : </label>
           <input type="text" class="form-control" id="created" th:value="${bdto.regAt}" readonly />
@@ -33,9 +34,9 @@
 [[${bdto.content}]]</textarea
           >
         </div>
-        <button type="button" id="listBtn" class="btn btn-primary">List</button>
-        <button type="button" id="modBtn" class="btn btn-warning">Modify</button>
-        <button type="button" id="delBtn" class="btn btn-danger">Remove</button>
+        <button type="button" id="listBtn" class="btn btn-outline-primary">List</button>
+        <button type="button" id="modBtn" class="btn btn-outline-warning">Modify</button>
+        <button type="button" id="delBtn" class="btn btn-outline-danger">Remove</button>
       </form>
       <form action="/board/remove" method="post" id="delForm">
         <input type="hidden" name="bno" th:value="${bdto.bno}" />

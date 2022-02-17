@@ -43,6 +43,23 @@ public class BoardServiceImpl implements BoardService {
 		return board.isPresent() ? convertEntityToDto(board.get()) : null;
 	}
 
+	@Override
+	public void remove(Long bno) {
+		repository.deleteById(bno);
+	}
+
+	@Override
+	public Long modify(BoardDTO bdto) {
+		Optional<Board> board = repository.findById(bdto.getBno());
+		if(board.isPresent()) {
+			Board entity = board.get();
+			entity.setTitle(bdto.getTitle());
+			entity.setContent(bdto.getContent());
+			return repository.save(entity).getBno();
+		}
+		return null;
+	}
+
 	
 
 }

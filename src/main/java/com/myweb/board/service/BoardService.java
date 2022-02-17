@@ -21,4 +21,8 @@ public interface BoardService {
 		return BoardDTO.builder().bno(board.getBno()).title(board.getTitle()).writer(board.getWriter())
 				.content(board.getContent()).regAt(board.getRegAt()).modAt(board.getModAt()).build();
 	}
+
+	void remove(Long bno);
+
+	Long modify(BoardDTO bdto);
 }

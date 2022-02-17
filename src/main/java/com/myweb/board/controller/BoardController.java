@@ -20,6 +20,21 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 	private final BoardService bsv;
 	
+	
+	@PostMapping("/modify")
+	public String modify (RedirectAttributes reAttr, BoardDTO bdto) {
+		Long bno = bsv.modify(bdto);
+		reAttr.addFlashAttribute("modify", bno);
+		return "redirect:/board/detail?bno=" + bno; 
+	}
+	
+	@PostMapping("/remove")
+	public String delete(Long bno, RedirectAttributes reAttr) {
+		bsv.remove(bno);
+		reAttr.addFlashAttribute("result", bno);
+		return "redirect:/board/list";
+	}
+	
 	@GetMapping("/detail")
 	public void detail(Long bno, Model model) {
 		model.addAttribute("bdto", bsv.getDetail(bno));
